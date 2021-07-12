@@ -16,6 +16,7 @@
     "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
+    "@types/jest": "^26.0.24",
     "axios": "^0.19.2",
     "jest": "^27.0.6"
   }
