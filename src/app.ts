@@ -1,42 +1,25 @@
-function anagram(str1: string, str2: string) {
-  let mapA = buildCharacterMap(str1)
-  let mapB = buildCharacterMap(str2)
-  //Check if the maps length are equal
-  if (Object.keys(mapA).length !== Object.keys(mapB).length) return false
-
-  //Loop through to check if there is a mismatch
-  for (let char in mapA) {
-    if (mapA[char] !== mapB[char]) return false
-  }
-
-  return true
+function capitalization(sentence: string) {
+  return sentence
+    .split(" ")
+    .map(
+      (word: string) => word[0].toUpperCase() + word.substring(1, word.length)
+    )
+    .join(" ")
 }
 
-//Build a character map
-function buildCharacterMap(str: string) {
-  let map: any = {}
-  for (let char of str) {
-    let lower = char.toLowerCase()
-    if (lower.match(/[a-z]/)) {
-      map[lower] = map[lower] + 1 || 1
+//Alternative
+function capitalize2(sentence: string) {
+  let result = ""
+
+  for (let i = 0; i < sentence.length; i++) {
+    if (sentence[i - 1] === " ") {
+      result += sentence[i].toUpperCase()
+    } else {
+      result += sentence[i]
     }
   }
-  return map
-}
-//Alternative solution Not recommended due to perfomance
-function anagramPoor(str1: string, str2: string) {
-  let set1
-  let set2
-  if (str1.toLowerCase().match(/[a-z]/)) {
-    set1 = str1.toLowerCase().split("").sort().join("")
-  }
-  if (str2.toLowerCase().match(/[a-z]/)) {
-    set2 = str2.toLowerCase().split("").sort().join("")
-  }
-  console.log(set1,set2)
-  if (set1 !== set2) return false
 
-  return true
+  return result[0].toUpperCase() + result.substring(1, sentence.length)
 }
 
-console.log(anagramPoor("rsail safety", "faiSry tales"))
+console.log(capitalize2("i went to school."))
