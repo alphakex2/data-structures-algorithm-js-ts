@@ -1,18 +1,22 @@
-//Integer reversal
+//Use this technique to solve many string related problems 
+// 1. Most common character
+// 2. Anagrams
+// 3. Does the string have any repeated characters
+function maxChar(text: string) {
+  let count: any = {} //Character map
+  let max = 0
+  let maxChar = ""
 
-function integerReversal(num: number) {
-  if (Math.sign(num) === -1) {
-    //Same as num < 0
-    let temp = Math.abs(num)
-    return Number(temp.toString().split("").reverse().join("")) * -1
-  } else if (num === 0) {
-    return 0
+  for (let char of text) {
+    count[char] = count[char] + 1 || 1 //If count[char] + 1 === Nan then 0 else add 1
   }
-  return Number(num.toString().split("").reverse().join(""))
+  for (let val in count) {
+    if (count[val] > max) {
+      max = count[val]
+      maxChar = val
+    }
+  }
+  return maxChar
 }
 
-//Above function cleaned Up
-
-function integerReversal2(num: number) {
-  return Number(num.toString().split("").reverse().join("")) * Math.sign(num)
-} //Math.sign(num) will return 1 if positive else -1
+console.log(maxChar("Kennedy"))
