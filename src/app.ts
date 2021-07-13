@@ -1,15 +1,26 @@
-function fizzBuzz(num: number) {
-  for (let i = 0; i <= num; i++) {
-    if (i % 15 === 0 && i !== 0) {
-      console.log("fizzBuzz")
-    } else if (i % 3 === 0 && i !== 0) {
-      console.log("fizz")
-    } else if (i % 5 === 0 && i !== 0) {
-      console.log("buzz")
+function arrChunk(arr: number[], size: number) {
+  let res: any = []
+
+  for (let el of arr) {
+    const last = res[res.length - 1]
+    if (!last || last.length === size) {
+      res.push([el])
     } else {
-      console.log(i)
+      last.push(el)
     }
   }
+  return res
 }
 
-fizzBuzz(100)
+//Alternative using slice
+function arrChunk2(arr: number[], size: number) {
+  let res: any = []
+  let idx = 0
+  while (idx < arr.length) {
+    res.push(arr.slice(idx, idx + size))
+    idx += size
+  }
+  return res
+}
+
+console.log(arrChunk([1, 2, 3, 4, 5], 3))
