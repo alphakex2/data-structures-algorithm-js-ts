@@ -1,25 +1,35 @@
-function capitalization(sentence: string) {
-  return sentence
-    .split(" ")
-    .map(
-      (word: string) => word[0].toUpperCase() + word.substring(1, word.length)
-    )
-    .join(" ")
+function steps(num: number) {
+  for (let row = 0; row <= num; row++) {
+    let stair = ""
+    for (let col = 0; col <= num; col++) {
+      if (col <= row) {
+        stair += "#"
+      } else {
+        stair += " "
+      }
+    }
+    console.log(stair)
+  }
 }
 
-//Alternative
-function capitalize2(sentence: string) {
-  let result = ""
+steps(4)
 
-  for (let i = 0; i < sentence.length; i++) {
-    if (sentence[i - 1] === " ") {
-      result += sentence[i].toUpperCase()
-    } else {
-      result += sentence[i]
-    }
+//Alternative solution using recursion
+function stepsRecursive(n: number, row = 0, stair = "") {
+  if (n === row) return
+
+  if (n === stair.length) {
+    console.log(stair)
+    stepsRecursive(n, row + 1)
+    return
   }
 
-  return result[0].toUpperCase() + result.substring(1, sentence.length)
+  if (stair.length <= row) {
+    stair += "#"
+  } else {
+    stair += " "
+  }
+  stepsRecursive(n, row, stair)
 }
 
-console.log(capitalize2("i went to school."))
+stepsRecursive(5)
