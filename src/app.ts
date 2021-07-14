@@ -1,38 +1,23 @@
-function pyramid(num: number) {
-  let mid = Math.floor((2 * num - 1) / 2)
-  for (let row = 0; row < num; row++) {
-    let pyramid = ""
-    for (let col = 0; col < 2 * num - 1; col++) {
-      if (mid - row <= col && mid + row >= col) {
-        pyramid += "#"
-      } else {
-        pyramid += " "
-      }
+function vowel(text: string) {
+  let count = 0
+  let vowels: any = {
+    a: "a",
+    e: "e",
+    i: "i",
+    o: "o",
+    u: "u",
+  }
+  for (let char of text) {
+    if (vowels[char.toLowerCase()] === char.toLowerCase()) {
+      count++
     }
-    console.log(pyramid)
   }
+  return count
 }
 
-pyramid(3)
-//Alternative solution using recusion
-function pyramidRecursive(num: number, row = 0, level = "") {
-  let col = num * 2 - 1
-  let mid = Math.floor(col / 2)
-
-  if (row === num) return
-  if (level.length === col) {
-    console.log(level)
-    pyramidRecursive(num, row + 1)
-    return
-  }
-
-  let add
-  if (mid - row <= level.length && mid + row >= level.length) {
-    add = "#"
-  } else {
-    add = " "
-  }
-  pyramidRecursive(num, row, level + add)
+//alternative solusion
+function vowels2(text: string) {
+  const matches = text.match(/[aeiou]/gi) //i case insensitive
+  return matches ? matches.length : false
 }
-
-pyramidRecursive(5)
+console.log(vowels2("Hi There!"))
