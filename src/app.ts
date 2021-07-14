@@ -1,23 +1,44 @@
-function vowel(text: string) {
-  let count = 0
-  let vowels: any = {
-    a: "a",
-    e: "e",
-    i: "i",
-    o: "o",
-    u: "u",
+function matrix(num: number) {
+  let result: any = []
+  //Fill the 2d array with empty arrays
+  for (let i = 0; i < num; i++) {
+    result.push([])
   }
-  for (let char of text) {
-    if (vowels[char.toLowerCase()] === char.toLowerCase()) {
-      count++
+  let counter = 1
+  let startCol = 0
+  let endCol = num - 1
+  let startRow = 0
+  let endRow = num - 1
+
+  while (startRow <= endRow && startCol <= endCol) {
+    //FirstRow
+    for (let i = startCol; i <= endCol; i++) {
+      result[startRow][i] = counter
+      counter++
     }
+
+    //Right Column
+    startRow++
+    for (let i = startRow; i <= endRow; i++) {
+      result[i][endCol] = counter
+      counter++
+    }
+
+    //Bottom Row
+    endCol--
+    for (let i = endCol; i >= startCol; i--) {
+      result[endRow][i] = counter
+      counter++
+    }
+    //First Column
+    endRow--
+    for (let i = endRow; i >= startRow; i--) {
+      result[i][startCol] = counter
+      counter++
+    }
+    startCol++
   }
-  return count
+  return result
 }
 
-//alternative solusion
-function vowels2(text: string) {
-  const matches = text.match(/[aeiou]/gi) //i case insensitive
-  return matches ? matches.length : false
-}
-console.log(vowels2("Hi There!"))
+console.log(matrix(3))
