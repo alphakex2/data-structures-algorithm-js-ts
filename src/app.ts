@@ -1,44 +1,29 @@
-function matrix(num: number) {
-  let result: any = []
-  //Fill the 2d array with empty arrays
-  for (let i = 0; i < num; i++) {
-    result.push([])
+function fib(n: number): any {
+  let results = [0, 1]
+
+  for (let i = 2; i <= n; i++) {
+    let a = results[i - 1]
+    let b = results[i - 2]
+    results.push(a + b)
   }
-  let counter = 1
-  let startCol = 0
-  let endCol = num - 1
-  let startRow = 0
-  let endRow = num - 1
-
-  while (startRow <= endRow && startCol <= endCol) {
-    //FirstRow
-    for (let i = startCol; i <= endCol; i++) {
-      result[startRow][i] = counter
-      counter++
-    }
-
-    //Right Column
-    startRow++
-    for (let i = startRow; i <= endRow; i++) {
-      result[i][endCol] = counter
-      counter++
-    }
-
-    //Bottom Row
-    endCol--
-    for (let i = endCol; i >= startCol; i--) {
-      result[endRow][i] = counter
-      counter++
-    }
-    //First Column
-    endRow--
-    for (let i = endRow; i >= startRow; i--) {
-      result[i][startCol] = counter
-      counter++
-    }
-    startCol++
-  }
-  return result
+  return results[n]
 }
 
-console.log(matrix(3))
+//Alternative solution using recursion...extremely bad
+function fibRec(num: number): any {
+  if (num < 2) return num
+  return fib(num - 1) + fib(num - 2)
+}
+
+//Alternative solution using memoized recursion
+function fib_memo(n: number, memo: number[] = []) {
+  if (memo[n] !== undefined) return memo[n]
+  if (n < 2) return n
+  let res: any = fib_memo(n - 1, memo) + fib_memo(n - 2, memo)
+  memo[n] = res
+  return res
+}
+
+
+
+console.log(fib_memo(100))
