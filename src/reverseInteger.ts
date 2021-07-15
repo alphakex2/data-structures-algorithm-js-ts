@@ -14,5 +14,5 @@ function integerReversal(num: number) {
 //Above function cleaned Up
 
 function integerReversal2(num: number) {
-  return Number(num.toString().split("").reverse().join("")) * Math.sign(num)
+  return Number(Math.abs(num).toString().split("").reverse().join("")) * Math.sign(num)
 } //Math.sign(num) will return 1 if positive else -1
