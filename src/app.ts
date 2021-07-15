@@ -1,12 +1,12 @@
-class NodeQueueWeave {
+class Stack {
   public data: any
   constructor() {
     this.data = []
   }
-  enqueue(data: any) {
-    this.data.unshift(data)
+  push(data: any) {
+    this.data.push(data)
   }
-  dequeue() {
+  pop() {
     return this.data.pop()
   }
   peek() {
@@ -14,31 +14,10 @@ class NodeQueueWeave {
   }
 }
 
-let q1 = new NodeQueueWeave()
-let q2 = new NodeQueueWeave()
+const st = new Stack()
+st.push(1)
+st.push(2)
+st.push(3)
+st.push(4)
 
-q1.enqueue(1)
-q1.enqueue(2)
-q1.enqueue(3)
-q1.enqueue(4)
-q2.enqueue("one")
-q2.enqueue("two")
-q2.enqueue("three")
-q2.enqueue("four")
-
-function weave(arr1: NodeQueueWeave, arr2: NodeQueueWeave) {
-  let results = new NodeQueueWeave()
-
-  while (arr1.peek() || arr2.peek()) {
-    if (arr1.peek()) {
-      results.enqueue(arr1.dequeue())
-    }
-    if (arr2.peek()) {
-      results.enqueue(arr2.dequeue())
-    }
-  }
-
-  return results
-}
-
-console.log(weave(q1, q2))
+console.log(st.peek())
